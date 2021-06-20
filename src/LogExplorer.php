@@ -33,10 +33,7 @@ class LogExplorer
 
     public function getFiles($data = null)
     {
-        if(!isset($data->diretorio)){
-            return [];
-        }
-        $diretorio = $data->diretorio;
+
         $scandir =  scandir(decrypt($diretorio));
         $scandir = array_filter($scandir, function($arquivo){
             return !preg_match('/^\./', $arquivo);

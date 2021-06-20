@@ -5,9 +5,9 @@ namespace WCast\Log;
 class LogExplorer
 {
 
-    public function getlogs()
+    public function getlogs($file = null)
     {
-        $this->getFolders();
+        return decrypt($file);
     }
 
     public function getFolders()
@@ -42,7 +42,7 @@ class LogExplorer
                 if (is_file(decrypt($diretorio) . DIRECTORY_SEPARATOR . $arquivo)) {
                     $arquivos[] = [
                         'nome' => $arquivo,
-                        'arquivo' => $diretorio,
+                        'arquivo' => encrypt(decrypt($diretorio) . DIRECTORY_SEPARATOR . $arquivo),
                         'tamanho' => $this->converterBytes(filesize(decrypt($diretorio) . DIRECTORY_SEPARATOR . $arquivo), 2),
                         'criado' => date('d/m/Y H:i:s', fileatime(decrypt($diretorio) . DIRECTORY_SEPARATOR . $arquivo))
                     ];
